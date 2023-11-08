@@ -1,3 +1,41 @@
+# duck_bot project
+
+# ----------------------------------------------------------------------------------------
+#   Specific ignore files and folders
+# ----------------------------------------------------------------------------------------
+
+#   Setting, Parameters and Config files
+*.json
+*.yaml
+*.ini
+
+#   Output files
+*.xls*
+*.xml
+*.csv
+*.txt
+
+#   parm and output will contain private data and therefore contents will be excluded, 
+#    but folders will be kept (using empty .gitkeep) to maintain project structure
+#   testcode folder is added here as the whole folder will be ignored 
+#   since the folder is not to be included in the repo nor any contained files
+#   documentation folder is only for me, not to be included with project or github
+#   docs would be where documentation for the project (to be shared) would be placed
+
+parms/
+output/
+testcode/
+testDocs/
+documentation/
+
+#   ignore modules starting with test
+#   temporary code can be made and run in normal folders for testing using test* prefix for module names
+test*.*
+
+# ----------------------------------------------------------------------------------------
+# Default .gitignore from https://github.com/github/gitignore/blob/main/Python.gitignore
+# ----------------------------------------------------------------------------------------
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -122,11 +160,15 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+pyvenv.cfg
+Scripts/
+Include/
 
 # Spyder project settings
 .spyderproject
