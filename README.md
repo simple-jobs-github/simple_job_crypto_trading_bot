@@ -5,8 +5,4 @@ The goal is to be able to change out any module so that the main program can fun
 wallet module so more cryptocurrencies can be supported, or even the exchange of other assets/assetclasses.
 
 
-the trading bot currently uses crypto wallet infinity wallet opensource python api to automate transactions.
-
-website: 
-https://infinitywallet.io/
 
