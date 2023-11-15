@@ -1,0 +1,32 @@
+    1 Payment Module:
+        wallet that can receive payment and invest using automation 
+
+   2 Market Analysis Module:
+-market data collection module
+
+    3 Asset Ranking Module:
+Options and price and ranking- data that can be collected later on
+
+    4 Currency Selection Module:
+-strategy module “make this easy for others to update and modify strategies. “ (research strategies and optimization using math)  (we can do research on this and develop the algorithm for this if you would like)
+
+   5 Buy/Sell Module:
+        Integrate exchange api and wallet automation and security features (part of module one)  [we can research wallets, wallet automation and security]
+
+
+    6 Conditional Analysis Module:
+        investment status, and  strategy module info.
+
+    7 Profit Management Module:
+        remove profit to asset accumulation cold storage wallet or wallets
+
+
+   8  Data Transcription Module:
+        Generate daily reports or documents summarizing the day's trading activity.  [i could be mistaken but i think the broker module would fit here?] -we can discuss this further when you read this lol
+
+   9  Security and Error Handling:
+        security through data verification module (separate program)
+
+   10 Loop Control:
+        Develop a control system that ensures the bot keeps running in a loop.
+        Handle any residual funds by reinvesting them or taking them back to the beginning of the loop. (part of module 1) @HeyLT
