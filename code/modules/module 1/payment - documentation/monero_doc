@@ -1,0 +1,13 @@
+As of my last knowledge update in January 2022, there isn't a specific Python library named monero for directly interacting with 
+the Monero blockchain. However, there is a Monero Python library called monero-python. Keep in mind that the Monero ecosystem 
+evolves, and it's essential to check for the latest libraries or updates.
+
+If you're looking to create a Monero wallet address tracker, you might need to interact with a Monero node using RPC (Remote Procedure Call). 
+Here's a basic example using the requests library to make RPC calls:
+
+In this example, replace rpc_url with the endpoint of your Monero node's RPC interface, and replace tracked_address with the Monero 
+address you want to monitor.
+
+Please note that this is a basic example, and you might need to customize it based on your specific requirements and the capabilities 
+of the Monero node you are connecting to. Additionally, the Monero ecosystem may have evolved, so be sure to check for any new libraries 
+or updates that may be available.
