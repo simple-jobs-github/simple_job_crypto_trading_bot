@@ -1,0 +1,12 @@
+Make sure to install the litecoin_rpc library:
+
+pip install litecoin_rpc
+
+Now, let's create a basic example for a wallet address tracker using the litecoin_rpc library:
+
+Replace the placeholders with your actual RPC credentials and Litecoin node information. Also, replace the tracked_address with the Litecoin 
+address you want to monitor.
+
+This is a basic example, and in a production environment, you might want to handle exceptions, secure the storage of sensitive information, 
+and implement a more robust way of sending balance information based on your specific use case. Additionally, keep in mind that frequent queries 
+to the Litecoin node may require additional considerations for rate limits and API usage policies.
