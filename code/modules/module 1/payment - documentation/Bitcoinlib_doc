@@ -1,0 +1,13 @@
+install the necessary libraries using pip:
+
+pip install bitcoinlib
+pip install requests
+
+Now, let's create a simple wallet address tracker that requests a public address to be tracked long-term and sends information 
+about the wallet balance after every block validation. Note that this is a basic example, and you might want to enhance it based on your specific requirements.
+
+In this example, the WalletAddressTracker class has methods to create a wallet, get the balance of a specific address, 
+track the address, and send balance information. You need to replace the placeholder values with your actual wallet name and the address you want to track.
+
+Please note that this is a basic example, and in a production environment, you might want to implement error handling, 
+secure storage of sensitive information, and a more robust way of sending balance information based on your specific use case. 
