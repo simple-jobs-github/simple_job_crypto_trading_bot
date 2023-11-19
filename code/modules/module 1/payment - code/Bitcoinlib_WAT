@@ -1,0 +1,47 @@
+from bitcoinlib.wallets import Wallet
+from bitcoinlib.mnemonic import Mnemonic
+import time
+import requests
+
+class WalletAddressTracker:
+    def __init__(self, wallet_name, network='mainnet'):
+        self.wallet_name = wallet_name
+        self.network = network
+        self.wallet = self.create_wallet()
+
+    def create_wallet(self):
+        # Check if wallet already exists, if not, create a new one
+        try:
+            wallet = Wallet(self.wallet_name, network=self.network)
+        except Exception as e:
+            wallet = Wallet.create(self.wallet_name, keys=1, network=self.network)
+        return wallet
+
+    def get_balance(self):
+        return self.wallet.balance()
+
+    def track_address(self, address):
+        while True:
+            # Get the balance of the tracked address
+            balance = self.wallet.address_balance(address)
+
+            # Send the balance information (you may replace this with your own logic)
+            self.send_balance_info(address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance}")
+
+if __name__ == "__main__":
+    # Example usage
+    wallet_name = "your_wallet_name"
+    tracker = WalletAddressTracker(wallet_name)
+
+    # Replace the following address with the one you want to track
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker.track_address(tracked_address)
