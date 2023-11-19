@@ -1,0 +1,20 @@
+As of my last knowledge update in January 2022, I'm not aware of a specific library called tether_python for tracking Tether (USDT) addresses. 
+However, I can provide you with a general example using the web3.py library, which is commonly used for interacting with Ethereum-based tokens, 
+including Tether.
+
+Please note that my information might be outdated, and you should check for the latest libraries or updates specific to Tether or the 
+blockchain network you are working with.
+
+Assuming Tether is an ERC-20 token on the Ethereum blockchain, you can use the following example with web3.py. If Tether has its own 
+blockchain or protocol, you may need to use a different library or API specific to that blockchain.
+
+First, install the web3 library:
+
+pip install web3
+
+In this example, replace the provider_url with your Ethereum node or Infura API key, and replace tracked_address with the Tether address 
+you want to monitor. Additionally, replace tether_contract_address with the actual Tether contract address, and ensure you have the correct 
+ABI (Application Binary Interface) for the Tether contract.
+
+Keep in mind that Tether might have specific APIs or libraries, so you should check the Tether documentation or community for the most 
+accurate and up-to-date information.
