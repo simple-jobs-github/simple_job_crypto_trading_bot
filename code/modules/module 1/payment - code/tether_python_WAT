@@ -1,0 +1,49 @@
+from web3 import Web3
+import time
+
+class WalletAddressTracker:
+    def __init__(self, provider_url):
+        self.web3 = Web3(Web3.HTTPProvider(provider_url))
+        self.tracked_address = None
+
+    def track_address(self, address):
+        self.tracked_address = Web3.toChecksumAddress(address)
+        print(f"Tracking address: {self.tracked_address}")
+
+        while True:
+            # Get the balance of the tracked address
+            balance = self.get_balance(self.tracked_address)
+
+            # Send the balance information (replace this with your own logic)
+            self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def get_balance(self, address):
+        # Assuming Tether is an ERC-20 token, use the 'balanceOf' function of the Tether contract
+        # Replace 'tether_contract_address' with the actual Tether contract address
+        tether_contract_address = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        tether_contract = self.web3.eth.contract(address=tether_contract_address, abi=TETHER_ABI)
+
+        try:
+            balance = tether_contract.functions.balanceOf(address).call()
+            return balance
+        except Exception as e:
+            print(f"Error getting balance: {e}")
+            return None
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} Tether")
+
+if __name__ == "__main__":
+    # Example usage
+    provider_url = "https://mainnet.infura.io/v3/your_infura_api_key"  # Replace with your Infura API key
+    tracker = WalletAddressTracker(provider_url)
+
+    # Replace the following address with the one you want to track
+    tracked_address = "0x1234567890123456789012345678901234567890"
+
+    tracker.track_address(tracked_address)
