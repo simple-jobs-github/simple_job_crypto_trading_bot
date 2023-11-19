@@ -1,0 +1,54 @@
+from litecoin_rpc import Proxy
+import time
+
+class WalletAddressTracker:
+    def __init__(self, rpc_user, rpc_password, rpc_host, rpc_port):
+        self.rpc_connection = Proxy(
+            user=rpc_user,
+            password=rpc_password,
+            host=rpc_host,
+            port=rpc_port
+        )
+        self.tracked_address = None
+
+    def track_address(self, address):
+        self.tracked_address = address
+        print(f"Tracking address: {self.tracked_address}")
+
+        while True:
+            # Get the balance of the tracked address
+            balance = self.get_balance(self.tracked_address)
+
+            # Send the balance information (replace this with your own logic)
+            self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def get_balance(self, address):
+        # Use the 'getreceivedbyaddress' RPC call to get the balance
+        try:
+            balance = self.rpc_connection.getreceivedbyaddress(address)
+            return balance
+        except Exception as e:
+            print(f"Error getting balance: {e}")
+            return None
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} LTC")
+
+if __name__ == "__main__":
+    # Example usage
+    rpc_user = "your_rpc_user"
+    rpc_password = "your_rpc_password"
+    rpc_host = "127.0.0.1"  # Replace with your Litecoin node's IP address
+    rpc_port = 9332  # Replace with your Litecoin node's RPC port
+
+    tracker = WalletAddressTracker(rpc_user, rpc_password, rpc_host, rpc_port)
+
+    # Replace the following address with the one you want to track
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker.track_address(tracked_address)
