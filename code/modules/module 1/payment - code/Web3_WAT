@@ -1,0 +1,39 @@
+from web3 import Web3
+import time
+
+class WalletAddressTracker:
+    def __init__(self, provider_url):
+        self.web3 = Web3(Web3.HTTPProvider(provider_url))
+        self.tracked_address = None
+
+    def track_address(self, address):
+        self.tracked_address = Web3.toChecksumAddress(address)
+        print(f"Tracking address: {self.tracked_address}")
+
+        while True:
+            # Get the balance of the tracked address
+            balance = self.web3.eth.getBalance(self.tracked_address)
+
+            # Convert balance from Wei to Ether
+            balance_ether = self.web3.fromWei(balance, 'ether')
+
+            # Send the balance information (replace this with your own logic)
+            self.send_balance_info(self.tracked_address, balance_ether)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} Ether")
+
+if __name__ == "__main__":
+    # Example usage
+    provider_url = "https://mainnet.infura.io/v3/your_infura_api_key"  # Replace with your Infura API key
+    tracker = WalletAddressTracker(provider_url)
+
+    # Replace the following address with the one you want to track
+    tracked_address = "0x1234567890123456789012345678901234567890"
+
+    tracker.track_address(tracked_address)
