@@ -1,0 +1,11 @@
+Install the library using:
+
+pip install web3
+
+Now, let's create a basic example for tracking a wallet address and sending information about the wallet balance after every block validation:
+
+Replace the provider_url with your Infura API key or your Ethereum node endpoint. Also, replace the tracked_address with the Ethereum address you want to monitor.
+
+Note: This is a basic example, and in a production environment, you might want to handle exceptions, secure the storage of sensitive information, 
+and implement a more robust way of sending balance information based on your specific use case. Additionally, keep in mind that frequent queries 
+to the Ethereum node may require additional considerations for rate limits and API usage policies.
