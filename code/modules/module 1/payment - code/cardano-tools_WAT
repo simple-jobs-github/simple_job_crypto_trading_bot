@@ -1,0 +1,48 @@
+import requests
+import time
+
+class WalletAddressTracker:
+    def __init__(self, api_url, address):
+        self.api_url = api_url
+        self.tracked_address = address
+
+    def get_balance(self):
+        query = """
+        query {
+          utxos(address: "%s") {
+            amount
+          }
+        }
+        """ % self.tracked_address
+
+        response = requests.post(self.api_url, json={"query": query})
+        result = response.json()
+
+        if "data" in result and "utxos" in result["data"]:
+            return sum(utxo["amount"] for utxo in result["data"]["utxos"])
+        else:
+            print(f"Error getting balance: {result}")
+            return None
+
+    def track_address(self):
+        while True:
+            balance = self.get_balance()
+
+            if balance is not None:
+                self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} ADA")
+
+if __name__ == "__main__":
+    # Example usage
+    api_url = "https://graphql-api.mainnet.cardano.org/"  # Replace with the Cardano GraphQL API endpoint
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker = WalletAddressTracker(api_url, tracked_address)
+    tracker.track_address()
