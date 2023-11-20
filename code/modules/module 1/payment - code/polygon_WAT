@@ -1,0 +1,48 @@
+import requests
+import time
+
+class WalletAddressTracker:
+    def __init__(self, polygon_rpc_url, address):
+        self.polygon_rpc_url = polygon_rpc_url
+        self.tracked_address = address
+
+    def get_balance(self):
+        endpoint = self.polygon_rpc_url
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_getBalance",
+            "params": [self.tracked_address, "latest"]
+        }
+
+        response = requests.post(endpoint, json=payload)
+        result = response.json()
+
+        if "result" in result:
+            return int(result["result"], 16) / 1e18  # Convert from Wei to Ether
+        else:
+            print(f"Error getting balance: {result}")
+            return None
+
+    def track_address(self):
+        while True:
+            balance = self.get_balance()
+
+            if balance is not None:
+                self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} MATIC")
+
+if __name__ == "__main__":
+    # Example usage
+    polygon_rpc_url = "https://rpc-mainnet.maticvigil.com/"  # Replace with the Polygon RPC endpoint
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker = WalletAddressTracker(polygon_rpc_url, tracked_address)
+    tracker.track_address()
