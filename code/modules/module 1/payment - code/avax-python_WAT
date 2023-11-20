@@ -1,0 +1,48 @@
+import requests
+import time
+
+class WalletAddressTracker:
+    def __init__(self, c_chain_api_url, address):
+        self.c_chain_api_url = c_chain_api_url
+        self.tracked_address = address
+
+    def get_balance(self):
+        endpoint = f"{self.c_chain_api_url}/ext/bc/C/rpc"
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "platform.getBalance",
+            "params": {"address": self.tracked_address}
+        }
+
+        response = requests.post(endpoint, json=payload)
+        result = response.json()
+
+        if "result" in result:
+            return result["result"]["balance"]
+        else:
+            print(f"Error getting balance: {result}")
+            return None
+
+    def track_address(self):
+        while True:
+            balance = self.get_balance()
+
+            if balance is not None:
+                self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance}")
+
+if __name__ == "__main__":
+    # Example usage
+    c_chain_api_url = "https://api.avax.network"  # Replace with the Avalanche C-Chain API endpoint
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker = WalletAddressTracker(c_chain_api_url, tracked_address)
+    tracker.track_address()
