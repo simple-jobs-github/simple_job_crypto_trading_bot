@@ -1,0 +1,11 @@
+If you are referring to the Solana SDK for Python, the official Solana Python library is generally called solana.
+
+You can install the official Solana Python library using:
+
+pip install solana
+
+In this example, replace your_solana_address with the actual Solana address you want to monitor. The code uses the Solana Python library to 
+interact with the Solana blockchain and periodically checks the balance of the specified Solana address.
+
+Please note that the Solana blockchain ecosystem evolves, and new features or updates to libraries may have occurred since my last update. 
+Always refer to the official Solana documentation or the library's documentation for the latest information.
