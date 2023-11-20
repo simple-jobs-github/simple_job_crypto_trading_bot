@@ -1,0 +1,35 @@
+from solana.account import Account
+from solana.rpc.api import Client
+import time
+
+class WalletAddressTracker:
+    def __init__(self, solana_address):
+        self.solana_address = solana_address
+        # Replace 'https://api.mainnet-beta.solana.com/' with the Solana RPC endpoint
+        self.rpc_url = 'https://api.mainnet-beta.solana.com/'
+        self.client = Client(self.rpc_url)
+
+    def get_balance(self):
+        # Get the balance
+        balance = self.client.get_balance(self.solana_address)
+        return balance
+
+    def track_address(self):
+        while True:
+            balance = self.get_balance()
+            self.send_balance_info(self.solana_address, balance)
+
+            # Sleep for some time before checking again (e.g., every block validation)
+            time.sleep(60)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} SOL")
+
+if __name__ == "__main__":
+    # Replace 'your_solana_address' with the Solana address you want to monitor
+    solana_address = 'your_solana_address'
+
+    tracker = WalletAddressTracker(solana_address)
+    tracker.track_address()
