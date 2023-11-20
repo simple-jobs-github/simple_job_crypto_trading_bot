@@ -1,0 +1,12 @@
+the Avalanche blockchain platform does provide APIs that you can use to interact with the network programmatically.
+
+If you're looking to create a wallet address tracker for Avalanche, you might want to use standard web requests to query the Avalanche 
+C-Chain (Contract Chain) APIs. Please note that the specific APIs and libraries can evolve, so always refer to the official Avalanche 
+documentation for the latest details.
+
+Here's a basic example using Python and the requests library to query the Avalanche C-Chain for balance information:
+
+Replace c_chain_api_url with the correct Avalanche C-Chain API endpoint, and tracked_address with the Avalanche address you want to monitor.
+
+Always check the official Avalanche documentation for any updates or changes in the APIs, and ensure that you are using the latest recommended 
+practices for interacting with the Avalanche blockchain.
