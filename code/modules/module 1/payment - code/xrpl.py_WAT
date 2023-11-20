@@ -1,0 +1,33 @@
+from xrpl.clients import JsonRpcClient
+from xrpl.wallet import Wallet
+
+class WalletAddressTracker:
+    def __init__(self, server_url, address):
+        self.server_url = server_url
+        self.tracked_address = address
+
+    def get_balance(self):
+        client = JsonRpcClient(self.server_url)
+        account_info = client.account_info(account=self.tracked_address)
+        return account_info["account_data"]["Balance"]
+
+    def track_address(self):
+        while True:
+            balance = self.get_balance()
+            self.send_balance_info(self.tracked_address, balance)
+
+            # Sleep for some time before checking again (e.g., every few seconds)
+            time.sleep(10)
+
+    def send_balance_info(self, address, balance):
+        # Replace this with your logic to send the balance information
+        # For example, you might want to send it to a database, API, or save it to a file.
+        print(f"Address: {address}, Balance: {balance} XRP")
+
+if __name__ == "__main__":
+    # Example usage
+    server_url = "https://s.altnet.rippletest.net:51234/"  # Testnet server, replace with the mainnet server
+    tracked_address = "replace_with_the_address_to_be_tracked"
+
+    tracker = WalletAddressTracker(server_url, tracked_address)
+    tracker.track_address()
