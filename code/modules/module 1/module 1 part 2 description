@@ -1,0 +1,8 @@
+if the value of xcrypto is above xvalue, initialize investing program.
+
+this part of module one will read /get values from each crypto and based 
+on that info it will decided if there is enough to startinvesting, based on the
+requirements for the trading stratedgy selected. a suggestion for Xcrypto 
+for initial investment should be usdt. the xvalue could be between 100 dollars,
+ idk we should discuss the specifics as a group.
+
